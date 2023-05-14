@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Persons </title>
+
+      <style>
+
+          body {
+            color: rgb(49, 20, 96);
+            text-align: center;
+            background-color: hsl(0, 20%, 97%);
+          }
+
+          table{color: rgb(0, 0, 0);}
+
+          table, th, td 
+          {
+            border:1px solid rgb(0, 0, 0);
+            margin-left:auto;
+            margin-right:auto;
+            padding: 5pt;
+          }
+
+          .btn
+          {
+            background-color:rgb(49, 20, 96);
+            color: beige;
+            border: none;
+            padding: 5pt;
+          }
+
+          label{color:rgb(0, 0, 0);}
+
+          .btn1,.btn2
+          {
+            background-color:rgb(49, 20, 96);
+            color: beige;
+            border: none;
+            padding: 5pt;
+            margin: 5pt;
+          }
+
+          h1{ text-align: center;}
+
+          .addpersons{
+            background-color: rgba(215, 214, 213, 0.907);
+            margin: 0 auto; 
+            padding: 20pt;
+            width:250px;
+          }    
+
+      </style>
+
+  </head>
+  
+  <body>
+    <h1>People Registered</h1>
+    <br><br>
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Email</th>
+          <th>Actions</th> <!-- add a new column for actions -->
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for user in people %}
+          <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.age }}</td>
+            <td>{{ user.gender}}</td>
+            <td>{{ user.email }}</td>
+            <td>
+              <!-- add a delete button for each user record -->
+              <form action="/delete/{{ user.id }}" method="post">
+                <button type="submit" class="btn2">Delete Person</button>
+              </form>
+              <a href="{{ url_for('update_user', user_id=user.id) }}">Update Person</a>
+            
+            </td>
+          </tr>
+        {% else %}
+          <tr>
+            <td colspan="6">No people found.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+
+    </table>
+    <br><br>
+   
+    <h1> put your new person info here !</h1>
+
+    <!-- form to add new person -->
+    <form  action="/submit" name="increaseData" method="post" class = "addpersons"> 
+      
+      <label> Name </label>         
+      <input type="text" name="name" size="20"/> <br> <br>  
+      
+      <label> Age: </label>
+      <input type="text" id="age" name="age" size="20"/> <br> <br>
+
+      <label> Gender: </label>
+      <input type="text" id="gender" name="gender" size="20"/> <br> <br> 
+
+      <label> Email </label>         
+      <input type="text" name="email" size="19"/> <br> <br> 
+
+      <a href="person-Interaction.html">
+      <input type="submit" class="btn1" name="btn1" value="Add Person"/> 
+      </a>
+
+    </form>
+
+  </body>
+</html>

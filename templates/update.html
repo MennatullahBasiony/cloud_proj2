@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <style>
+        body{
+            color: rgb(49, 20, 96);
+            text-align: center;
+            background-color: rgb(255, 255, 255);
+        }
+        .btn{
+            background-color:rgb(49, 20, 96);
+            color: beige;
+            border: none;
+            font-size: medium;
+            padding: 5pt;
+        }
+    </style>
+
+    <title>Update Person Data</title>
+
+  </head>
+
+  <body>
+
+    <h1>Update Person Data</h1>
+
+    <form action="{{ url_for('update_user', user_id=user_id) }}" method="post">
+
+      <label>Name:</label>
+      <input type="text" name="name" value="{{ user.name }}"><br><br>
+
+      <label>Age:</label>
+      <input type="text" name="age" value="{{ user.age }}"><br><br>
+
+      <label>Gender:</label>
+      <input type="text" name="gender" value="{{ user.gender }}"><br><br>
+
+      <label>Email:</label>
+      <input type="text" name="email" value="{{ user.email }}"><br><br>
+
+      <button type="submit" class="btn">Update</button>
+
+    </form>
+
+  </body>
+</html>
